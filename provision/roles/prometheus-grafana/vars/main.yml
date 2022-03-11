@@ -1,0 +1,12 @@
+src: /etc
+
+prom_name: prometheus
+prom_ip: localhost
+prom_port: 9090
+
+graf_name: grafana
+graf_login: admin
+graf_pass: admin
+graf_ip: localhost
+graf_port: 3000
+dashboard_url: https://grafana.com/api/dashboards/1860/revisions/26/download

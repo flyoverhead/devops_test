@@ -1,0 +1,19 @@
+- name: Install node exporter packages
+  apt:
+    pkg: "{{ ne_pkgs }}"
+    state: present
+
+- name: Create node exporter systemd unit file
+  copy:
+    src: node_exporter.service
+    dest: /etc/systemd/system/node_exporter.service
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Set node exporter to be enabled at boot
+  systemd:
+    name: node_exporter
+    enabled: yes
+    state: started
+    daemon_reload: yes

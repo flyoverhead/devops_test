@@ -1,0 +1,6 @@
+docker_pkgs:
+  - docker
+  - docker-compose
+user: docker
+group: docker
+vagrant: vagrant

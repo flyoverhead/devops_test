@@ -1,0 +1,28 @@
+- name: Copy files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ src }}"
+  with_items:
+    - "{{ prom_name }}"
+    - "{{ graf_name }}"
+    - "docker-compose.yml"
+
+- name: Start docker-compose service
+  docker_compose:
+    project_src: "{{ src }}"
+  register: output
+
+- name: Pause for 2 seconds to let grafana state up
+  pause:
+    seconds: 2
+
+- name: Import Grafana dashboard 1860
+  grafana_dashboard:
+    grafana_url: "http://{{ graf_ip }}:{{ graf_port }}"
+    grafana_user: "{{ graf_login }}"
+    grafana_password: "{{ graf_pass }}"
+    state: present
+    commit_message: Updated by ansible
+    overwrite: yes
+    path: "{{ dashboard_url }}"
+  no_log: true

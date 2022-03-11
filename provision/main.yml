@@ -1,0 +1,9 @@
+---
+- name: Build test environment
+  hosts: all
+  become: yes
+  roles:
+    - role: environment
+    - role: docker
+    - role: node_exporter
+    - role: prometheus-grafana

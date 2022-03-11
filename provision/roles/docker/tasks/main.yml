@@ -1,0 +1,21 @@
+- name: Install docker packages
+  apt:
+    pkg: "{{ docker_pkgs }}"
+    state: present
+
+- name: Create docker group
+  group:
+    name: "{{ user }}"
+    state: present
+    
+- name: Add vagrant user to docker group
+  user:
+    name: "{{ vagrant }}"
+    groups: "{{ group }}"
+    append: yes
+    
+- name: Enable and start docker daemon
+  service:
+    name: docker
+    state: started
+    enabled: yes
