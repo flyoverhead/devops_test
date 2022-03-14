@@ -5,13 +5,13 @@
 
 - name: Create docker group
   group:
-    name: "{{ user }}"
+    name: "{{ docker_user }}"
     state: present
     
 - name: Add vagrant user to docker group
   user:
-    name: "{{ vagrant }}"
-    groups: "{{ group }}"
+    name: "{{ docker_vagrant }}"
+    groups: "{{ docker_group }}"
     append: yes
     
 - name: Enable and start docker daemon

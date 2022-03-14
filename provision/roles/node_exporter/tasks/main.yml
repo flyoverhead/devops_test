@@ -1,6 +1,6 @@
 - name: Install node exporter packages
   apt:
-    pkg: "{{ ne_pkgs }}"
+    pkg: prometheus-node-exporter
     state: present
 
 - name: Create node exporter systemd unit file
